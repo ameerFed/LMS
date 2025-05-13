@@ -1,0 +1,396 @@
+// @import url("https://fonts.googleapis.com/css?family=Proxima+Nova");
+
+$theme-color: #f05203;
+$primary-color: $theme-color;
+$green: #82bd00;
+$yellow: #f0c20c;
+$gray-200: #ededed;
+$gray-300: #d0d0d0;
+$gray-400: #aaa7a6;
+$gray-500: #393b40;
+
+
+$black: #000;
+$black-100: #1f1f1f;
+$white: #fff;
+
+@function px-to-rem($px, $base: 16) {
+  @return #{$px / $base}rem;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_black-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_black-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_black-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_black-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_black-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_black-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_blackit-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_blackit-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_blackit-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_bold-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_bold-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_boldit-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_boldit-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_boldit-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_extrabold-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_extrabold-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_extrabold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_light-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_light-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_light-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "proxima_nova";
+  src: url("./assets/fonts/proximanova_regular-webfont.woff2") format("woff2"),
+    url("./assets/fonts/proximanova_regular-webfont.woff") format("woff"),
+    url("./assets/fonts/proximanova_regular-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pNovaFamily {
+  font-family: "proxima_nova", sans-serif;
+}
+.poPinsFamily {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "proxima_nova", sans-serif !important;
+  min-width: 320px;
+}
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+.bg-gray {
+  background-color: $gray-200;
+}
+.auth-header {
+  border-bottom: 1px solid rgba($black, 0.3);
+
+  @media (min-width: 1024px) {
+    padding-left: 2%;
+  }
+  @media (min-width: 1200px) {
+    padding-left: 4%;
+  }
+  @media (min-width: 1400px) {
+    padding-left: 6%;
+  }
+  .logo {
+    font-size: px-to-rem(28);
+    line-height: 1.2;
+    text-decoration: none;
+    color: $black-100;
+
+    @media (max-width: 1023px) {
+      font-size: px-to-rem(24);
+    }
+    @media (max-width: 767px) {
+      font-size: px-to-rem(20);
+    }
+
+    & > span {
+      max-width: 59px;
+      @media (max-width: 1023px) {
+        max-width: 50px;
+      }
+      @media (max-width: 767px) {
+        max-width: 45px;
+      }
+    }
+  }
+}
+a{
+  text-decoration: none;
+}
+.text-green{
+  color: $green;
+}
+.black-100 {
+  color: $black-100;
+}
+.black-100-78{
+  color: rgba($black-100, .78);
+}
+.auth-form-holder,
+.auth-footer-area{
+  max-width: 650px;
+  width: 100%;
+}
+.auth-form-holder {
+  border-radius: 20px;
+
+  textarea{
+    &.form-control{
+      min-height: 125px;
+    }
+  }
+  .education-block{
+    & + .education-block{
+      border-top: 1px solid $gray-300;
+      margin-top: 16px;
+      padding-top: 20px;
+    }
+  }
+}
+.form-label {
+  font-size: px-to-rem(16);
+  line-height: 1;
+  font-family: "proxima_nova";
+  @media (max-width: 767px) {
+    font-size: px-to-rem(14);
+  }
+}
+
+.form-control {
+  height: 53px;
+  background: $white;
+  border: 1px solid $gray-300;
+  color: $black-100;
+  border-radius: 12px;
+  font-size: px-to-rem(16);
+  font-weight: 500;
+  padding: 17px;
+
+  @media (max-width: 767px) {
+    height: 48px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #f05203;
+  }
+}
+.form-control-otp {
+  width: 63px;
+  height: 60px;
+  border-radius: 12px;
+  border: 1.25px solid #e1e5eb;
+  background: transparent;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
+  color: #0f0f0f;
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    border-color: var(--theme-color);
+    outline: 0;
+  }
+}
+
+.h1 {
+  font-size: px-to-rem(64);
+  line-height: 78px;
+  h1 {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+.h2 {
+  font-size: px-to-rem(46);
+  line-height: 58px;
+  h2 {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+.h3 {
+  font-size: px-to-rem(28);
+  line-height: 36px;
+  h3 {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+.h4 {
+  font-size: px-to-rem(22);
+  line-height: 28px;
+  h4 {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+// panel heading
+.ah-heading-01 {
+  font-size: 40px;
+  line-height: 1;
+}
+.ah-heading-02 {
+  font-size: 30px;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 36px;
+  }
+}
+.ah-heading-03 {
+  font-size: 32px;
+  line-height: 1;
+}
+.ah-heading-04 {
+  font-size: 28px;
+  line-height: 31px;
+}
+.ah-heading-05 {
+  font-size: 20px;
+  line-height: 1;
+}
+
+// .ah-text-xl {
+//   font-size: px-to-rem();
+// }
+.ah-text-lg {
+  font-size: px-to-rem(20);
+}
+.ah-text-md {
+  font-size: px-to-rem(18);
+}
+.ah-text-base {
+  font-size: px-to-rem(16);
+}
+.ah-text-sm {
+  font-size: px-to-rem(14);
+}
+.ah-text-xs {
+  font-size: px-to-rem(12);
+}
+
+.btn {
+  font-size: px-to-rem(15);
+  line-height: 25px;
+  min-width: 203px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 15px 25px;
+  color: $white;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 5px 0 #ccc;
+  transition: all 0.2s ease;
+  font-family: "Manrope", sans-serif;
+
+  @media (max-width: 767px) {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: px-to-rem(14);
+    line-height: 22px;
+  }
+
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #ccc;
+  }
+}
+
+.btn-primary {
+  background-color: $theme-color;
+  color: $white;
+  border: 1px solid $theme-color;
+  &:hover {
+    background-color: darken($theme-color, 5%);
+    border-color: darken($theme-color, 5%);
+  }
+  &:active {
+    background-color: darken($theme-color, 5%) !important;
+    border-color: darken($theme-color, 5%) !important;
+  }
+}
+
+.App {
+  text-align: center;
+  background-color: $primary-color;
+
+  padding: 20px;
+
+  h1 {
+    font-size: 3em;
+  }
+}
+
+.user-type-selection-card {
+  .user-type-selection-card-item {
+    transform: translateY(0);
+    max-width: 195px;
+    label {
+      width: 100%;
+      height: 156px;
+      padding: 10px;
+      text-align: center;
+      border: 2px solid rgba($gray-500, 0.3);
+      border-radius: 10px;
+      font-size: px-to-rem(18px);
+      color: rgba($black, 0.6);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+    input{
+      position: fixed;
+      top: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .icon{
+      font-size: 36px;
+      color: rgba($black, 0.6);
+    }
+
+    &:has(input:checked) {
+      label {
+        border-color: $green;
+        background: rgba($green, 0.12);
+        color: $black;
+        .icon{
+          color: $theme-color;
+        }
+      }
+    }
+  }
+}
