@@ -9,7 +9,6 @@ $gray-300: #d0d0d0;
 $gray-400: #aaa7a6;
 $gray-500: #393b40;
 
-
 $black: #000;
 $black-100: #1f1f1f;
 $white: #fff;
@@ -96,7 +95,15 @@ $white: #fff;
 .poPinsFamily {
   font-family: "Poppins", sans-serif;
 }
-
+.theme-color{
+  color: $theme-color;
+}
+.text-gray-600{
+  color: rgba($black, .6);
+}
+.cursor-pointer{
+  cursor: pointer;
+}
 body {
   font-family: "proxima_nova", sans-serif !important;
   min-width: 320px;
@@ -111,6 +118,9 @@ img {
 }
 .auth-header {
   border-bottom: 1px solid rgba($black, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 2;
 
   @media (min-width: 1024px) {
     padding-left: 2%;
@@ -120,6 +130,11 @@ img {
   }
   @media (min-width: 1400px) {
     padding-left: 6%;
+  }
+  .back-button {
+    position: absolute;
+    left: 0;
+    transform: translateX(-100%);
   }
   .logo {
     font-size: px-to-rem(28);
@@ -145,36 +160,36 @@ img {
     }
   }
 }
-a{
+a {
   text-decoration: none;
 }
-.text-green{
+.text-green {
   color: $green;
 }
 .black-100 {
   color: $black-100;
 }
-.black-100-78{
-  color: rgba($black-100, .78);
+.black-100-78 {
+  color: rgba($black-100, 0.78);
 }
 .auth-form-holder,
-.auth-footer-area{
+.auth-footer-area {
   max-width: 650px;
   width: 100%;
 }
 .auth-form-holder {
   border-radius: 20px;
 
-  textarea{
-    &.form-control{
+  textarea {
+    &.form-control {
       min-height: 125px;
     }
   }
-  .education-block{
-    & + .education-block{
-      border-top: 1px solid $gray-300;
+  .education-block {
+    border-bottom: 1px solid $gray-300;
+    padding-bottom: 20px;
+    & + .education-block {
       margin-top: 16px;
-      padding-top: 20px;
     }
   }
 }
@@ -186,7 +201,20 @@ a{
     font-size: px-to-rem(14);
   }
 }
+select {
+  &.form-control {
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
 
+    background-position: calc(100% - 20px) center, calc(100% - 15px) center,
+      calc(100% - 2.5em) center;
+
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+
+    background-repeat: no-repeat;
+  }
+}
 .form-control {
   height: 53px;
   background: $white;
@@ -195,7 +223,7 @@ a{
   border-radius: 12px;
   font-size: px-to-rem(16);
   font-weight: 500;
-  padding: 17px;
+  padding: 10px 17px;
 
   @media (max-width: 767px) {
     height: 48px;
@@ -219,7 +247,7 @@ a{
   color: #0f0f0f;
   transition: all 0.3s ease-in-out;
   &:focus {
-    border-color: var(--theme-color);
+    border-color: $theme-color;
     outline: 0;
   }
 }
@@ -342,6 +370,12 @@ a{
     background-color: darken($theme-color, 5%) !important;
     border-color: darken($theme-color, 5%) !important;
   }
+  &:disabled {
+    background-color: $theme-color;
+    border-color: $theme-color;
+    opacity: 0.8;
+    outline: none;
+  }
 }
 
 .App {
@@ -371,13 +405,13 @@ a{
       cursor: pointer;
       transition: all 0.3s ease-in-out;
     }
-    input{
+    input {
       position: fixed;
       top: 0;
       opacity: 0;
       visibility: hidden;
     }
-    .icon{
+    .icon {
       font-size: 36px;
       color: rgba($black, 0.6);
     }
@@ -387,9 +421,186 @@ a{
         border-color: $green;
         background: rgba($green, 0.12);
         color: $black;
-        .icon{
+        .icon {
           color: $theme-color;
         }
+      }
+    }
+  }
+}
+.dottedLoading {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+  margin: 7px auto;
+  position: relative;
+  color: #fff;
+  left: -100px;
+  box-sizing: border-box;
+  animation: dottedLoadingAnimation 2s linear infinite;
+}
+@keyframes dottedLoadingAnimation {
+  0% {
+    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+  12% {
+    box-shadow: 100px 0 white, 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+  }
+  25% {
+    box-shadow: 110px 0 white, 100px 0 white, 0px 0 rgba(255, 255, 255, 0),
+      0px 0 rgba(255, 255, 255, 0);
+  }
+  36% {
+    box-shadow: 120px 0 white, 110px 0 white, 100px 0 white,
+      0px 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 130px 0 white, 120px 0 white, 110px 0 white, 100px 0 white;
+  }
+  62% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 white, 120px 0 white,
+      110px 0 white;
+  }
+  75% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      130px 0 white, 120px 0 white;
+  }
+  87% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 130px 0 white;
+  }
+  100% {
+    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+      200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.PhoneInput {
+  .PhoneInputInput {
+    border-width: 0;
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 330px;
+  background: #f5f7f9;
+  // padding: 5px 5px 0 0;
+  overflow: hidden;
+  border-right: 1px solid rgba($black, 0.2);
+  color: var(--black-900);
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+
+  @media (max-width: 1499px) {
+    width: 280px;
+  }
+  .logo {
+    .lazy-load-image-loaded {
+      max-width: 49px;
+    }
+    strong {
+      font-size: px-to-rem(28);
+      color: $black-100;
+    }
+  }
+  .scrollable-sidebar {
+    height: calc(100vh - 147px);
+    overflow-x: auto;
+    padding: 0 35px;
+    @media (max-width: 1499px) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    @media (max-width: 1199px) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .menu {
+      .menu-item {
+        padding: 19px 20px;
+        gap: 17px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: px-to-rem(18);
+        line-height: 1;
+        color: rgba($black, 0.54);
+        transition: background 0.3s;
+        @media (max-width: 1499px) {
+          font-size: 17px;
+        }
+        &:hover {
+          background: $theme-color;
+          color: $white;
+          box-shadow: 0px 5px 0px 0px #aaa7a680;
+        }
+        &.active {
+          background: $theme-color;
+          color: $white;
+          box-shadow: 0px 5px 0px 0px #aaa7a680;
+        }
+        &.active svg {
+          fill: $theme-color;
+        }
+        .icon {
+          font-size: 25px;
+          line-height: 1;
+        }
+      }
+    }
+    .bottom-section {
+      margin-top: auto;
+      .menu {
+        li {
+          margin-bottom: 20px;
+        }
+      }
+      .menu-item {
+        color: rgba($black, 0.7);
+        padding: 0;
+
+        img {
+          width: 28px;
+          height: 28px;
+          border: 1px solid #4a4a4b;
+        }
+        &:hover {
+          color: $theme-color;
+          background-color: transparent;
+          box-shadow: none;
+          img {
+            border: 1px solid $theme-color;
+          }
+        }
+        &.active {
+          color: $theme-color;
+          background-color: transparent;
+          box-shadow: none;
+          img {
+            border: 1px solid $theme-color;
+          }
+        }
+        .icon {
+          font-size: 25px;
+          line-height: 1;
+        }
+      }
+      .sidebar-devider {
+        border-top: 1px solid rgba($black, 0.2);
+        padding-top: 20px;
+        margin-top: 20px;
       }
     }
   }

@@ -1,10 +1,16 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { loginAPI } from "../../../redux/features/authSlice";
+import toast from "react-hot-toast";
+import CustomButton from "../../../components/CustomButton/CustomButton";
 
 export default function Login() {
   const [passwordShow, setPasswordShow] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     email: "",
@@ -27,9 +33,33 @@ export default function Login() {
       .required("Password is required"),
   });
 
-  const handleSubmit = (values) => {
-    console.log("Form Data", values);
-    // Handle login logic here
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const result = await dispatch(loginAPI(values)).unwrap();
+      if (result.success) {
+        toast.success(result.message, {
+          position: "top-center",
+        });
+        
+        if (result.data.role === "Instructor" && result.data.status === "pending") {
+          navigate("/profile-setup");
+        } else if (result.data.role === "Instructor" && result.data.status === "complete"){
+          navigate("/instructor-dashboard");
+        }
+         else if (result.data.role === "Student") {
+          navigate("/student-dashboard"); // Add appropriate route
+        } else if (result.data.role === "Admin") {
+          navigate("/admin-dashboard");
+        }
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error(error?.message || "Login failed. Please try again.", {
+        position: "top-center",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -50,18 +80,18 @@ export default function Login() {
             action="#"
             className="bg-white auth-form-holder mx-auto px-20 px-sm-30 px-md-40 pt-40 pt-md-50 pb-30"
           >
-            <div class="mb-12 mb-md-16">
+            <div className="mb-12 mb-md-16">
               <label
-                for="email"
-                class="form-label black-100 fw-semibold mb-8 mb-xl-12"
+                htmlFor="email"
+                className="form-label black-100 fw-semibold mb-8 mb-xl-12"
               >
-                Email or username
+                Email
               </label>
               <Field
                 type="email"
                 name="email"
                 id="email"
-                placeholder="Enter email or username"
+                placeholder="Enter your email"
                 className="form-control"
               />
               <ErrorMessage
@@ -70,10 +100,10 @@ export default function Login() {
                 className="text-danger mt-1"
               />
             </div>
-            <div class="mb-12 mb-md-16">
+            <div className="mb-12 mb-md-16">
               <label
-                for="password"
-                class="form-label black-100 fw-semibold mb-8 mb-xl-12"
+                htmlFor="password"
+                className="form-label black-100 fw-semibold mb-8 mb-xl-12"
               >
                 Password
               </label>
@@ -135,30 +165,31 @@ export default function Login() {
                   </svg>
                 )}
               </div>
-              
               <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="text-danger mt-1"
-                />
+                name="password"
+                component="div"
+                className="text-danger mt-1"
+              />
               <div className="text-end pt-4 pt-md-10">
-                <Link to={"/forgot-password"} className="ah-text-sm black-100-78 fw-semibold">
+                <Link
+                  to={"/forgot-password"}
+                  className="ah-text-sm black-100-78 fw-semibold"
+                >
                   Forgot Password?
                 </Link>
               </div>
             </div>
             <div className="pt-12 mb-18 mb-md-24">
-              <button
-                className="btn btn-primary w-100 mb-10"
-                type="submit"
-                disabled={isSubmitting}
-              >
-                Login
-              </button>
+              <CustomButton
+                type={"submit"}
+                label="Login"
+                classes={"btn btn-primary w-100 mb-10"}
+                isSubmitting={isSubmitting}
+              />
             </div>
             <div className="text-center text-base">
               Don’t have an account?{" "}
-              <Link to={"sign-up"} className="fw-semibold text-green">
+              <Link to={"/user-type"} className="fw-semibold text-green">
                 Sign up
               </Link>
             </div>
