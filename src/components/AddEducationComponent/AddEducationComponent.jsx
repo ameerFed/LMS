@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import SelecFieldForStudyComponent from "../SelecFieldForStudyComponent/SelecFieldForStudyComponent";
-import { instructorSkipClickAPI } from "../../redux/features/intructorSlice";
+import { skipClickAPI } from "../../redux/features/intructorSlice";
 
 export default function AddEducationComponent() {
   const dispatch = useDispatch();
@@ -135,11 +135,11 @@ export default function AddEducationComponent() {
   };
 
   const skipNowHandler = async () => {
-    if (location.pathname === "/add-education") {
-      navigate("/add-experience");
-    } else if (location.pathname === "/instructor-add-education") {
-      const res = await dispatch(instructorSkipClickAPI({ auth })).unwrap();
-      if (res.success) {
+    const res = await dispatch(skipClickAPI({ auth })).unwrap();
+    if (res.success) {
+      if (location.pathname === "/add-education") {
+        navigate("/add-experience");
+      } else if (location.pathname === "/instructor-add-education") {
         navigate("/instructor-add-experience");
       }
     }

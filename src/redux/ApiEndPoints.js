@@ -1,3 +1,4 @@
+// export const BASE_URL = "http://172.16.0.158:3001/api/v1/";
 export const BASE_URL = "https://egwb.logoinnovators.com/api/v1/";
 
 export const API_END_POINTS = {
@@ -11,6 +12,7 @@ export const API_END_POINTS = {
 
   // global Data 
   fieldOfStudy: BASE_URL + "common/field-of-study",
+  skipClick: BASE_URL + "skip/click",
   
 
   // student 
@@ -21,7 +23,7 @@ export const API_END_POINTS = {
   instructorProfileUpdate: BASE_URL + "instructor/setup-profile",
   instructorAddEducation: BASE_URL + "instructor/add-education",
   instructorAddExperience: BASE_URL + "instructor/add-experience",
-  instructorSkipClick: BASE_URL + "skip/click",
+  
   
 
   

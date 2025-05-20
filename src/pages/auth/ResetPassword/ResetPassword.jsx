@@ -181,9 +181,9 @@ export default function ResetPassword() {
               />
             </div>
             <div className="text-center text-base">
-              Already have an account?
+              
               <Link to="/" className="fw-semibold text-green ms-5">
-                Login
+                Go To Dashboard
               </Link>
             </div>
           </Form>

@@ -92,14 +92,15 @@ export const instructorAddExperienceAPI = createAsyncThunk(
   }
 );
 
-export const instructorSkipClickAPI = createAsyncThunk(
-  "instructorSkipClickAPI",
+export const skipClickAPI = createAsyncThunk(
+  "skipClickAPI",
   async (credentials, { rejectWithValue }) => {
-    console.log(credentials.auth);
     try {
       const response = await axios.put(
-        API_END_POINTS.instructorSkipClick,
-        { userId: credentials.auth.user_id },
+        API_END_POINTS.skipClick,
+        { userId: credentials.auth.user_id,
+          role: credentials.auth.role
+         },
         {
           headers: {
             "Content-Type": "application/json",

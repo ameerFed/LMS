@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { studentAddExperienceAPI } from "../../redux/features/studentDetailSlice";
 import { instructorAddExperienceAPI } from "../../redux/features/intructorSlice";
 import CustomButton from "../CustomButton/CustomButton";
-import { instructorSkipClickAPI } from "../../redux/features/intructorSlice";
+import { skipClickAPI } from "../../redux/features/intructorSlice";
 
 const workTypeOptions = ["Hybrid", "On-site", "Remote"];
 
@@ -127,11 +127,12 @@ export default function AddExperienceComponent() {
   };
 
   const skipNowHandler = async () => {
-    if (location.pathname === "/add-experience") {
-      navigate("/student-dashboard");
-    } else if (location.pathname === "/instructor-add-experience") {
-      const res = await dispatch(instructorSkipClickAPI({ auth })).unwrap();
-      if (res.success) {
+    const res = await dispatch(skipClickAPI({ auth })).unwrap();
+    if (res.success) {
+      if (location.pathname === "/add-experience") {
+        navigate("/student-dashboard");
+      }
+      else if (location.pathname === "/instructor-add-experience"){
         navigate("/instructor-dashboard");
       }
     }

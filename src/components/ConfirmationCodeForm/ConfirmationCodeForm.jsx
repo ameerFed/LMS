@@ -74,13 +74,24 @@ export default function ConfirmationCodeForm() {
         toast.success(res?.message, {
           position: "top-center",
         });
-
-        if(res?.data?.user?.role?.name === "Instructor"){
-          navigate("/instructor-reset-password");
-        } else if(res?.data?.user?.role?.name === "Student"){
-          navigate("/student-reset-password");
-        } else if(res?.data?.user?.role?.name === "Admin"){
-          navigate("/admin-reset-password");
+        
+        if (
+          res?.data?.user?.status === "pending" && res?.data?.user?.role?.name === "Student"
+        ) {
+          navigate("/add-education");
+        } else if (
+          res?.data?.user?.status === "pending" &&
+          res?.data?.user?.role?.name === "Instructor"
+        ) {
+          navigate("/instructor-add-education");
+        } else {
+          if (res?.data?.user?.role?.name === "Instructor") {
+            navigate("/instructor-reset-password");
+          } else if (res?.data?.user?.role?.name === "Student") {
+            navigate("/student-reset-password");
+          } else if (res?.data?.user?.role?.name === "Admin") {
+            navigate("/admin-reset-password");
+          }
         }
       }
     } catch (error) {
